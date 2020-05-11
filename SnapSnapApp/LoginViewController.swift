@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+  var signUpMode = false
   
   
   @IBOutlet weak var emailTextField: UITextField!
@@ -25,7 +26,30 @@ class LoginViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view.
   }
-
+  
+  
+  
+  @IBAction func topButtonTapped(_ sender: UIButton) {
+  }
+  
+  
+  
+  @IBAction func bottomButtonTapped(_ sender: UIButton) {
+    
+    if signUpMode{
+      // switch to Log In
+      
+    }else{
+      // switch to Sign Up
+      
+      
+      
+    }
+    
+    
+    
+  }
+  
 
 }
 
