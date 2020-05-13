@@ -55,22 +55,59 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
         // Upload an image
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imagesFolder = storageRef.child("images")
+        let imagesFolder = storageRef.child("images/\(UUID().uuidString).jpg")
+        
+ 
+        
+//
+//        guard let imageData = imageView.image?.jpegData(compressionQuality: 0.1) else {
+//          return
+//        }
+//
+//        imagesFolder.putData(imageData, metadata: nil) { (metaData, error) in
+////          print("METADATA", metaData)
+//          if error == nil{
+//
+//            imagesFolder.downloadURL { (url, error) in
+//              print("URLLLLLLL", url)
+//            }
+//
+//          }else{
+//            print("ERROR!!!!!!!!", error)
+//          }
+//
+//
+//
+//        }
+        
+        
+        
         
         if let image = imageView.image{
           if let imageData = image.jpegData(compressionQuality: 0.75){
-            //NSUUID().uuidString - universal name of a file such as image.jpg
-            imagesFolder.child("\(NSUUID().uuidString).jpg").putData(imageData, metadata: nil) { (metadata, error) in
+            //"\(NSUUID().uuidString).jpg" - universal name of a file such as image.jpg
+            imagesFolder.putData(imageData, metadata: nil) { (metadata, error) in
+
               if let error = error{
-                
+
                 self.presentAlert(alert: error.localizedDescription)
-                
+
               }else{
                 // segue to next viewController
-                print("Image loaded")
+                imagesFolder.downloadURL { (url, error) in
+                  guard let downloadURL = url else {
+                    // Uh-oh, an error occurred!
+                    print(error)
+                    return
+                  }
+                  self.performSegue(withIdentifier: "selectMessageReciever", sender: downloadURL.absoluteString)
+                }
+
               }
+
+
             }
-            
+
           }
         }
         // Segue to next view
@@ -102,6 +139,31 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
     
     dismiss(animated: true, completion: nil)
   }
+  
+  
+  
+  
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    
+    if segue.identifier == "selectMessageReciever"{
+      guard let downloadURL = sender as? String else {
+        return
+      }
+
+      
+      if let selectResVC = segue.destination as? SelectRecipientTableViewController{
+        selectResVC.downloadURL = downloadURL
+      }
+      
+
+      
+    }
+    
+
+  }
+  
+  
   
   
   
