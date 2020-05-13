@@ -14,6 +14,8 @@
 		21322CAB2469EFB8005A290B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 21322CAA2469EFB8005A290B /* Assets.xcassets */; };
 		21322CAE2469EFB8005A290B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 21322CAC2469EFB8005A290B /* LaunchScreen.storyboard */; };
 		21322CB62469F13F005A290B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 21322CB52469F13F005A290B /* GoogleService-Info.plist */; };
+		21322CB8246A75D5005A290B /* SnapsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21322CB7246A75D5005A290B /* SnapsTableViewController.swift */; };
+		21322CBA246A7A20005A290B /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21322CB9246A7A20005A290B /* SelectPictureViewController.swift */; };
 		E116E7B7B6F9CFE67C80E386 /* Pods_SnapSnapApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52741C160596501BA0B262A /* Pods_SnapSnapApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,8 @@
 		21322CAD2469EFB8005A290B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		21322CAF2469EFB8005A290B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		21322CB52469F13F005A290B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		21322CB7246A75D5005A290B /* SnapsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapsTableViewController.swift; sourceTree = "<group>"; };
+		21322CB9246A7A20005A290B /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
 		667B059C41206B308091C344 /* Pods-SnapSnapApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapSnapApp.release.xcconfig"; path = "Target Support Files/Pods-SnapSnapApp/Pods-SnapSnapApp.release.xcconfig"; sourceTree = "<group>"; };
 		9A6AFD1E8BA843DD0175F8F6 /* Pods-SnapSnapApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapSnapApp.debug.xcconfig"; path = "Target Support Files/Pods-SnapSnapApp/Pods-SnapSnapApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B52741C160596501BA0B262A /* Pods_SnapSnapApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnapSnapApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,14 +79,32 @@
 			children = (
 				21322CA12469EFB3005A290B /* AppDelegate.swift */,
 				21322CA32469EFB3005A290B /* SceneDelegate.swift */,
-				21322CA52469EFB3005A290B /* LoginViewController.swift */,
-				21322CA72469EFB3005A290B /* Main.storyboard */,
+				21322CBC246A7A9F005A290B /* Controllers */,
+				21322CBB246A7A93005A290B /* View */,
 				21322CAA2469EFB8005A290B /* Assets.xcassets */,
 				21322CAC2469EFB8005A290B /* LaunchScreen.storyboard */,
 				21322CAF2469EFB8005A290B /* Info.plist */,
 				21322CB52469F13F005A290B /* GoogleService-Info.plist */,
 			);
 			path = SnapSnapApp;
+			sourceTree = "<group>";
+		};
+		21322CBB246A7A93005A290B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				21322CA72469EFB3005A290B /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		21322CBC246A7A9F005A290B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				21322CA52469EFB3005A290B /* LoginViewController.swift */,
+				21322CB7246A75D5005A290B /* SnapsTableViewController.swift */,
+				21322CB9246A7A20005A290B /* SelectPictureViewController.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		83929366BEB730F6A0D82CA5 /* Pods */ = {
@@ -211,7 +233,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				21322CA62469EFB3005A290B /* LoginViewController.swift in Sources */,
+				21322CB8246A75D5005A290B /* SnapsTableViewController.swift in Sources */,
 				21322CA22469EFB3005A290B /* AppDelegate.swift in Sources */,
+				21322CBA246A7A20005A290B /* SelectPictureViewController.swift in Sources */,
 				21322CA42469EFB3005A290B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
