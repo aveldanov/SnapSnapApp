@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 class SelectPictureViewController: UIViewController,  UIImagePickerControllerDelegate & UINavigationControllerDelegate {
   var imagePicker: UIImagePickerController?
@@ -16,21 +17,21 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
   @IBOutlet weak var messageTextField: UITextField!
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-     imagePicker = UIImagePickerController()
-      imagePicker?.delegate = self
-      
-    }
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-
+    imagePicker = UIImagePickerController()
+    imagePicker?.delegate = self
+    
+  }
+  
+  
   @IBAction func selectPhotoButtonTapped(_ sender: UIBarButtonItem) {
     if let imagePicker = imagePicker{
       imagePicker.sourceType = .photoLibrary
       present(imagePicker, animated: true, completion: nil)
     }
-   
+    
   }
   
   
@@ -43,8 +44,35 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
   
   
   @IBAction func nextButtonTapped(_ sender: UIButton) {
+    
+    // DELETE THIS FOR PRODUCTION!!!
+    messageTextField.text = "test"
+    imageAdded = true
+    
+    
     if let message = messageTextField.text{
       if imageAdded && (message != ""){
+        // Upload an image
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        let imagesFolder = storageRef.child("images")
+        
+        if let image = imageView.image{
+          if let imageData = image.jpegData(compressionQuality: 0.75){
+            //NSUUID().uuidString - universal name of a file such as image.jpg
+            imagesFolder.child("\(NSUUID().uuidString).jpg").putData(imageData, metadata: nil) { (metadata, error) in
+              if let error = error{
+                
+                self.presentAlert(alert: error.localizedDescription)
+                
+              }else{
+                // segue to next viewController
+                print("Image loaded")
+              }
+            }
+            
+          }
+        }
         // Segue to next view
       }else{
         // Error:
@@ -52,7 +80,7 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
         
       }
     }
-
+    
     
   }
   
@@ -81,13 +109,13 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
 
 
 extension SelectPictureViewController{
-    func presentAlert(alert:String){
-      
-     let alertVC = UIAlertController(title: "Error", message: alert, preferredStyle: .alert)
+  func presentAlert(alert:String){
+    
+    let alertVC = UIAlertController(title: "Error", message: alert, preferredStyle: .alert)
     let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
-        alertVC.dismiss(animated: true, completion: nil)
-      }
-      alertVC.addAction(okAction)
-  present(alertVC, animated: true, completion: nil)
+      alertVC.dismiss(animated: true, completion: nil)
     }
+    alertVC.addAction(okAction)
+    present(alertVC, animated: true, completion: nil)
+  }
 }
