@@ -8,58 +8,127 @@
 
 import UIKit
 import FirebaseFirestore
+import FirebaseAuth
 
 class SelectRecipientTableViewController: UITableViewController {
-
+  
   var downloadURL = ""
   let db = Firestore.firestore()
-  let user = User()
   var users: [User] = []
+  var snapDescription = ""
+
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    var user = User()
 
-          
-            db.collection("users")
-            .addSnapshotListener { documentSnapshot, error in
-              guard let document = documentSnapshot else {
-                print("Error fetching document: \(error!)")
-                return
+    
+    
+    
+    
+    db.collection("users").getDocuments(completion: { (documentSnapshot, error) in
+      
+         guard let document = documentSnapshot else {
+           print("Error fetching document: \(error!)")
+           return
+         }
+      
+//       print("COUNT:",document.documents.count)
+      for item in document.documents{
+//                print("ITEM!!!! ",item.data())
+                user.email = item.data()["email"] as! String
+                user.uid = item.documentID
+                self.users.append(user)
+                for i in self.users{
+                  print("USER: ! ", i.email)
+                }
+//                print("end of cycle")
+                  self.tableView.reloadData()
+  
               }
-        //      guard let data = document.data() else {
-        //        print("Document data was empty.")
-        //        return
-        //      }
-              print("Current data: \(document.documents.map{$0.data().values})")
-              
-              for item in document.documents{
-                self.user.email = item.data()["email"] as! String
-                self.user.uid = item.documentID
-                self.users.append(self.user)
-                print("USERS:",self.users[0].email)
-                self.tableView.reloadData()
-              }
-              
-            }    }
-
-    // MARK: - Table view data source
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-      return users.count
-    }
+      
+      
+      
+      
+    })
+      
+      
+//      .addSnapshotListener { documentSnapshot, error in
+//        guard let document = documentSnapshot else {
+//          print("Error fetching document: \(error!)")
+//          return
+//        }
+//
+//
+//
+//
+//        //      guard let data = document.data() else {
+//        //        print("Document data was empty.")
+//        //        return
+//        //      }
+//
+//        print("COUNT:",document.documents.count)
+//
+//        for item in document.documents{
+//          print("ITEM!!!! ",item.data())
+//          user.email = item.data()["email"] as! String
+//          user.uid = item.documentID
+//          self.users.append(user)
+//          for i in self.users{
+//            print("USER: ! ", i.email)
+//          }
+//          print("end of cycle")
+//            self.tableView.reloadData()
+//
+//
+//
+//
+//
+//        }
+//
+//    }
+    
+  }
+  
+  // MARK: - Table view data source
+  
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    // #warning Incomplete implementation, return the number of rows
+    return users.count
+  }
   
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell()
     
-    let user = users[indexPath.row]
-    cell.textLabel?.text = user.email
+      
+      let user = self.users[indexPath.row]
+      
+      cell.textLabel?.text = user.email
+        
+    
+
     return cell
   }
   
   
-
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let user = users[indexPath.row]
+    if let fromEmail = Auth.auth().currentUser?.email{
+      let snap = ["snaps":FieldValue.arrayUnion([["from":fromEmail, "description":snapDescription, "imageURL": downloadURL]])] as? Any
+//
+//      db.collection("users").document(user.uid).updateData(["snaps":FieldValue.arrayUnion(["TEST"])])
+      
+      db.collection("users").document(user.uid).updateData(snap as! [AnyHashable : Any])
+     
+      navigationController?.popToRootViewController(animated: true)
+      
+    }
+    
+    
+  }
   
-
+  
+  
+  
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 
-class User {
+struct User {
   var email = ""
   var uid = ""
 }

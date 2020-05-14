@@ -154,6 +154,7 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
       
       if let selectResVC = segue.destination as? SelectRecipientTableViewController{
         selectResVC.downloadURL = downloadURL
+        selectResVC.snapDescription = messageTextField.text!
       }
       
 

@@ -48,14 +48,14 @@ class LoginViewController: UIViewController {
 //              print(user?.credential)
               if let user = user{
                 // Add a new document with a generated ID
-//                var ref: DocumentReference? = nil
-               let ref = self.db.collection("users").addDocument(
-                data:[
+                self.db.collection("users").document(user.user.uid).setData(                [
                   
-                  "email": user.user.email!,
-                  "snaps":["snap1", "snap2"]
+                  "email": user.user.email!
+                  ,
+                  "snaps":[]
                 ]
-                ) { err in
+                
+                ){ err in
                   if let err = err {
                     print("Error adding document: \(err)")
                   } else {
@@ -86,7 +86,14 @@ class LoginViewController: UIViewController {
 //
 //
               
-              
+//              var ref: DocumentReference? = nil
+//              ref = self.db.collection("users").addDocument(
+//              data:[
+//
+//                "email": user.user.email!
+//                ,
+//                "snaps":[]
+//              ]
               
               
               
