@@ -56,9 +56,7 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
         
 // Upload an image
         
-        
-        
-        
+
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
