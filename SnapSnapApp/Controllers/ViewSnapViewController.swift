@@ -36,17 +36,12 @@ class ViewSnapViewController: UIViewController {
             self.imageName = imageName
           }
           
-          
-          
         }
         
       }
       
     }
-    
-    
-    
-    
+
   }
   //MARK: - delete snap image after it was viewed
   override func viewWillDisappear(_ animated: Bool) {
