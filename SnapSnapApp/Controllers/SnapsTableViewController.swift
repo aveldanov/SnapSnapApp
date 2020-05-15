@@ -28,28 +28,71 @@ class SnapsTableViewController: UITableViewController {
     }
     
     
+    if let currentUserUid = Auth.auth().currentUser?.uid{
+      ref.child("users").child(currentUserUid).child("snaps").observe(.childRemoved) { (snapshot) in
+        var index = 0
+        for snap in self.snaps{
+          if snapshot.key == snap.key{
+            self.snaps.remove(at: index)
+          }
+          index+=1
+          
+        }
+        self.tableView.reloadData()
+        
+      }
+
+      
+      
+    }
+    
+    
+    
+    
   }
   
   // MARK: - Table view data source
   
 
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return snaps.count
+    
+    
+    if snaps.count == 0{
+      return 1
+    }else{
+      return snaps.count
+
+      
+    }
+    
+    
   }
   
   
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = UITableViewCell()
-    let snap = snaps[indexPath.row]
     
-    if let snapDict = snap.value as? NSDictionary{
-      if let fromEmail = snapDict["from"] as? String{
-        
-        cell.textLabel?.text = fromEmail
-        
-      }
+    if snaps.count == 0{
       
+      cell.textLabel?.text = "You have no snaps 🙁"
+      
+    }else{
+      let snap = snaps[indexPath.row]
+      
+      if let snapDict = snap.value as? NSDictionary{
+        if let fromEmail = snapDict["from"] as? String{
+          
+          cell.textLabel?.text = fromEmail
+          
+        }
+      }
+
     }
+    
+    
+    
+    
+
     
     return cell
   }

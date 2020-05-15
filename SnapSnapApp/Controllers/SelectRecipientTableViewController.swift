@@ -15,6 +15,7 @@ class SelectRecipientTableViewController: UITableViewController {
   var downloadURL = ""
   var users: [User] = []
   var snapDescription = ""
+  var imageName = ""
 
   
   override func viewDidLoad() {
@@ -60,7 +61,7 @@ class SelectRecipientTableViewController: UITableViewController {
     let fromEmail = Auth.auth().currentUser?.email
     
     
-    let snap = ["from":fromEmail, "description":snapDescription, "imageURL":downloadURL]
+    let snap = ["from":fromEmail, "description":snapDescription, "imageURL":downloadURL,"imageName":imageName]
     //DB
     var ref: DatabaseReference!
     ref = Database.database().reference()

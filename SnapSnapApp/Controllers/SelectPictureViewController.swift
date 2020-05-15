@@ -12,6 +12,7 @@ import FirebaseStorage
 class SelectPictureViewController: UIViewController,  UIImagePickerControllerDelegate & UINavigationControllerDelegate {
   var imagePicker: UIImagePickerController?
   var imageAdded = false
+  var imageName = "images/\(UUID().uuidString).jpg"
   
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var messageTextField: UITextField!
@@ -46,8 +47,8 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
   @IBAction func nextButtonTapped(_ sender: UIButton) {
     
     // DELETE THIS FOR PRODUCTION!!!
-    messageTextField.text = "test"
-    imageAdded = true
+//    messageTextField.text = "test"
+//    imageAdded = true
     
     
     if let message = messageTextField.text{
@@ -61,7 +62,7 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imagesFolder = storageRef.child("images/\(UUID().uuidString).jpg")
+        let imagesFolder = storageRef.child(imageName)
 
 
         if let image = imageView.image{
@@ -136,6 +137,7 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
       if let selectResVC = segue.destination as? SelectRecipientTableViewController{
         selectResVC.downloadURL = downloadURL
         selectResVC.snapDescription = messageTextField.text!
+        selectResVC.imageName = imageName
       }
       
 
