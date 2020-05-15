@@ -8,20 +8,37 @@
 
 import UIKit
 import FirebaseDatabase
+import SDWebImage
 
 
 class ViewSnapViewController: UIViewController {
-
+  
   var snap: DataSnapshot?
   
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var messageLabel: UILabel!
   
   override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+    super.viewDidLoad()
+      if let snapDict = snap?.value as? NSDictionary{
+        if let description = snapDict["description"] as? String{
+          if let imageURL = snapDict["imageURL"] as? String{
+            
+            messageLabel.text = description
+            if let url = URL(string: imageURL){
+              imageView.sd_setImage(with: url)
+            }
+          }
+          
+        }
+        
+      }
+      
     
-
-
+    
+    
+  }
+  
+  
+  
 }

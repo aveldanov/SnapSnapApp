@@ -14,15 +14,12 @@ pod 'Firebase/Analytics'
 # https://firebase.google.com/docs/ios/setup#available-pods
 
 pod 'Firebase/Auth'
-
 pod 'Firebase/Storage'
-
-
-pod 'Firebase/Firestore'
 
 # Optionally, include the Swift extensions if you're using Swift.
 pod 'FirebaseFirestoreSwift'
-
 pod 'Firebase/Database'
+
+pod 'SDWebImage'
 
 end
