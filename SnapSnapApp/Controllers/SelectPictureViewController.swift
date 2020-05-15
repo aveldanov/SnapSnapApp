@@ -12,7 +12,7 @@ import FirebaseStorage
 class SelectPictureViewController: UIViewController,  UIImagePickerControllerDelegate & UINavigationControllerDelegate {
   var imagePicker: UIImagePickerController?
   var imageAdded = false
-  var imageName = "images/\(UUID().uuidString).jpg"
+  var imageName = "\(NSUUID().uuidString).jpg"
   
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var messageTextField: UITextField!
@@ -62,7 +62,7 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
-        let imagesFolder = storageRef.child(imageName)
+        let imagesFolder = storageRef.child("images/\(imageName)")
 
 
         if let image = imageView.image{

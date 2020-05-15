@@ -62,6 +62,8 @@ class ViewSnapViewController: UIViewController {
         
         let storage = Storage.storage()
         let storageRef = storage.reference()
+        
+        print("[ViewSnapVC] imageName", imageName)
         storageRef.child("images").child(imageName).delete(completion: nil)
         
         
