@@ -8,10 +8,10 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseFirestore
+import FirebaseDatabase
+
 
 class LoginViewController: UIViewController {
-  let db = Firestore.firestore()
   var signUpMode = false
   
   
@@ -21,12 +21,11 @@ class LoginViewController: UIViewController {
   @IBOutlet weak var bottomButtonOutlet: UIButton!
   
   
-  
+
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
   }
   
   
@@ -40,20 +39,21 @@ class LoginViewController: UIViewController {
           
           Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if let error = error{
-              //              print(error.localizedDescription)
               self.presentAlert(alert: error.localizedDescription)
             }else{
               print("Sign up was successful")
-//              print(user?.additionalUserInfo)
-//              print(user?.credential)
+
               if let user = user{
                 // Add a new document with a generated ID
-                self.db.collection("users").document(user.user.uid).setData(                [
+                var ref: DatabaseReference!
+
+                ref = Database.database().reference()
+                
+                ref.child("users")
+                
+                  //DB!
                   
-                  "email": user.user.email!
-                  ,
-                  "snaps":[]
-                ]
+                  
                 
                 ){ err in
                   if let err = err {
@@ -65,37 +65,7 @@ class LoginViewController: UIViewController {
                 
               }
               
-              
-              
-//
-//                             let ref = self.db.collection("users").document(user.user.uid).setData(
-//                                [
-//
-//                                "email": user.user.email!,
-//                                "snaps":["snap1", "snap2"]
-//                              ]
-//                              ) { err in
-//                                if let err = err {
-//                                  print("Error adding document: \(err)")
-//                                } else {
-//              //                    print("Document added with ID: \(ref!.documentID)")
-//                                }
-//                              }
-//
-//                            }
-//
-//
-              
-//              var ref: DocumentReference? = nil
-//              ref = self.db.collection("users").addDocument(
-//              data:[
-//
-//                "email": user.user.email!
-//                ,
-//                "snaps":[]
-//              ]
-              
-              
+         
               
               
               

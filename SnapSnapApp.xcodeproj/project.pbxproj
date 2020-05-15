@@ -81,6 +81,7 @@
 		21322CA02469EFB3005A290B /* SnapSnapApp */ = {
 			isa = PBXGroup;
 			children = (
+				21322CC1246E48FF005A290B /* Archive */,
 				21322CA12469EFB3005A290B /* AppDelegate.swift */,
 				21322CA32469EFB3005A290B /* SceneDelegate.swift */,
 				21322CBC246A7A9F005A290B /* Controllers */,
@@ -111,6 +112,13 @@
 				21322CBF246BEA99005A290B /* User.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		21322CC1246E48FF005A290B /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Archive;
 			sourceTree = "<group>";
 		};
 		83929366BEB730F6A0D82CA5 /* Pods */ = {

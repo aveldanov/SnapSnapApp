@@ -52,37 +52,18 @@ class SelectPictureViewController: UIViewController,  UIImagePickerControllerDel
     
     if let message = messageTextField.text{
       if imageAdded && (message != ""){
-        // Upload an image
+        
+// Upload an image
+        
+        
+        
+        
+        
         let storage = Storage.storage()
         let storageRef = storage.reference()
         let imagesFolder = storageRef.child("images/\(UUID().uuidString).jpg")
-        
- 
-        
-//
-//        guard let imageData = imageView.image?.jpegData(compressionQuality: 0.1) else {
-//          return
-//        }
-//
-//        imagesFolder.putData(imageData, metadata: nil) { (metaData, error) in
-////          print("METADATA", metaData)
-//          if error == nil{
-//
-//            imagesFolder.downloadURL { (url, error) in
-//              print("URLLLLLLL", url)
-//            }
-//
-//          }else{
-//            print("ERROR!!!!!!!!", error)
-//          }
-//
-//
-//
-//        }
-        
-        
-        
-        
+
+
         if let image = imageView.image{
           if let imageData = image.jpegData(compressionQuality: 0.75){
             //"\(NSUUID().uuidString).jpg" - universal name of a file such as image.jpg
