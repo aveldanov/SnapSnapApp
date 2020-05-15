@@ -8,94 +8,23 @@
 
 import UIKit
 import FirebaseAuth
-import FirebaseFirestore
+import FirebaseDatabase
 
 class SnapsTableViewController: UITableViewController {
-  let db = Firestore.firestore()
-  var snaps: [DocumentSnapshot] = []
+  var snaps: [DataSnapshot] = []
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if let uid = Auth.auth().currentUser?.uid{
-      
-//      db.collection("users").getDocuments { (documentSnapshot, error) in
-//        guard let document = documentSnapshot else {
-//                         print("Error fetching document: \(error!)")
-//                         return
-//                       }
-//
-//        for item in document.documents{
-//
-//          print("ITEM", item.data())
-//          self.snaps.append(item)
-//
-//        }
-//
-//
-//
-//      }
-      
-      
-      
-      db.collection("users").document(uid).addSnapshotListener(includeMetadataChanges: true) { (documentSnapshot, error) in
-        
-        
+  var ref: DatabaseReference!
+  ref = Database.database().reference()
+    if let currentUserUid = Auth.auth().currentUser?.uid{
+      ref.child("users").child(currentUserUid).child("snaps").observe(.childAdded) { (snapshot) in
+        self.snaps.append(snapshot)
+        self.tableView.reloadData()
       }
+
       
       
-
-      db.collection("users").document(uid).addSnapshotListener() { (documentSnapshot, error) in
-
-        guard let document = documentSnapshot else {
-                 print("Error fetching document: \(error!)")
-                 return
-               }
-          self.snaps.append(document)
-        print("OHSNAP",self.snaps.count)
-
-
-
-
-
-      }
-      
-      
-      
-      
-//      db.collection("users").document(uid).addSnapshotListener { (documentSnapshot, error) in
-//        guard let document = documentSnapshot else {
-//                print("Error fetching document: \(error!)")
-//                return
-//              }
-//
-//        self.snaps.append(document)
-//
-//        self.tableView.reloadData()
-//        print("OHSNAP",self.snaps.count)
-//      }
-      
-
-//      db.collection("users").document(uid).getDocument { (documentSnapshot, error) in
-//
-//
-// guard let document = documentSnapshot else {
-//          print("Error fetching document: \(error!)")
-//          return
-//        }
-// document.data()?.compactMapValues({ (item) -> Any? in
-//   self.snaps.append(document)
-//
-//   self.tableView.reloadData()
-//   print("OHSNAP",self.snaps.count)
-//   return self.snaps
-// })
-//
-//
-//
-//      }
-
-
-
     }
     
     
@@ -103,30 +32,18 @@ class SnapsTableViewController: UITableViewController {
   
   // MARK: - Table view data source
   
-  
-  
+
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    // #warning Incomplete implementation, return the number of rows
     return snaps.count
   }
   
+  
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
     let cell = UITableViewCell()
     let snap = snaps[indexPath.row]
-//    if let snapDict = snap as? Dictionary<String, String>{
-//      if let fromEmail = snapDict["from"] as? String{
-//        cell.textLabel?.text = fromEmail
-//
-//
-//      }
-//    }
-    self.tableView.reloadData()
-
-    if let snapDict = snap.data() as NSDictionary?{
-//      print("TLJLKJLKRJ",snap.data()?.values)
-      if let fromEmail = snapDict["email"] as? String{
-       print("FROM EMAIL!!!",fromEmail)
+    
+    if let snapDict = snap.value as? NSDictionary{
+      if let fromEmail = snapDict["from"] as? String{
         
         cell.textLabel?.text = fromEmail
         
@@ -134,9 +51,31 @@ class SnapsTableViewController: UITableViewController {
       
     }
     
-    
     return cell
   }
+  
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let snap = snaps[indexPath.row]
+    
+    performSegue(withIdentifier: "viewSnapSegue", sender: snap)
+    
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "viewSnapSegue"{
+      if let viewSnapVC = segue.destination as? ViewSnapViewController{
+        if let snap = sender as? DataSnapshot{
+          viewSnapVC.snap = snap
+        }
+      }
+    }
+  }
+  
+  
+  
+  
+  
   
   
   
@@ -152,6 +91,12 @@ class SnapsTableViewController: UITableViewController {
     dismiss(animated: true, completion: nil)
     
   }
+  
+  
+  
+  
+  
+  
   
   
   

@@ -18,6 +18,7 @@
 		21322CBA246A7A20005A290B /* SelectPictureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21322CB9246A7A20005A290B /* SelectPictureViewController.swift */; };
 		21322CBE246BA03D005A290B /* SelectRecipientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21322CBD246BA03D005A290B /* SelectRecipientTableViewController.swift */; };
 		21322CC0246BEA99005A290B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21322CBF246BEA99005A290B /* User.swift */; };
+		21322CC3246E5F51005A290B /* ViewSnapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21322CC2246E5F51005A290B /* ViewSnapViewController.swift */; };
 		E116E7B7B6F9CFE67C80E386 /* Pods_SnapSnapApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B52741C160596501BA0B262A /* Pods_SnapSnapApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		21322CB9246A7A20005A290B /* SelectPictureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectPictureViewController.swift; sourceTree = "<group>"; };
 		21322CBD246BA03D005A290B /* SelectRecipientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRecipientTableViewController.swift; sourceTree = "<group>"; };
 		21322CBF246BEA99005A290B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		21322CC2246E5F51005A290B /* ViewSnapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSnapViewController.swift; sourceTree = "<group>"; };
 		667B059C41206B308091C344 /* Pods-SnapSnapApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapSnapApp.release.xcconfig"; path = "Target Support Files/Pods-SnapSnapApp/Pods-SnapSnapApp.release.xcconfig"; sourceTree = "<group>"; };
 		9A6AFD1E8BA843DD0175F8F6 /* Pods-SnapSnapApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SnapSnapApp.debug.xcconfig"; path = "Target Support Files/Pods-SnapSnapApp/Pods-SnapSnapApp.debug.xcconfig"; sourceTree = "<group>"; };
 		B52741C160596501BA0B262A /* Pods_SnapSnapApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SnapSnapApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +109,7 @@
 			children = (
 				21322CA52469EFB3005A290B /* LoginViewController.swift */,
 				21322CB7246A75D5005A290B /* SnapsTableViewController.swift */,
+				21322CC2246E5F51005A290B /* ViewSnapViewController.swift */,
 				21322CB9246A7A20005A290B /* SelectPictureViewController.swift */,
 				21322CBD246BA03D005A290B /* SelectRecipientTableViewController.swift */,
 				21322CBF246BEA99005A290B /* User.swift */,
@@ -249,6 +252,7 @@
 				21322CA62469EFB3005A290B /* LoginViewController.swift in Sources */,
 				21322CBE246BA03D005A290B /* SelectRecipientTableViewController.swift in Sources */,
 				21322CB8246A75D5005A290B /* SnapsTableViewController.swift in Sources */,
+				21322CC3246E5F51005A290B /* ViewSnapViewController.swift in Sources */,
 				21322CA22469EFB3005A290B /* AppDelegate.swift in Sources */,
 				21322CBA246A7A20005A290B /* SelectPictureViewController.swift in Sources */,
 				21322CA42469EFB3005A290B /* SceneDelegate.swift in Sources */,

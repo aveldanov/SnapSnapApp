@@ -120,10 +120,57 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="cHs-pV-exk" kind="show" identifier="viewSnapSegue" id="AEb-3e-gVt"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="54q-Q5-lR6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2097.1014492753625" y="73.660714285714278"/>
+        </scene>
+        <!--View Snap View Controller-->
+        <scene sceneID="iUJ-ta-OSJ">
+            <objects>
+                <viewController id="cHs-pV-exk" customClass="ViewSnapViewController" customModule="SnapSnapApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9ch-FV-pRE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qDQ-2d-OHD">
+                                <rect key="frame" x="0.0" y="88" width="414" height="724"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tND-Nf-VQh">
+                                <rect key="frame" x="10" y="822" width="394" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="g7c-x6-qgX"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6iu-00-hIv" firstAttribute="trailing" secondItem="qDQ-2d-OHD" secondAttribute="trailing" id="CyR-bA-6dM"/>
+                            <constraint firstItem="tND-Nf-VQh" firstAttribute="leading" secondItem="6iu-00-hIv" secondAttribute="leading" constant="10" id="Klu-zo-HwJ"/>
+                            <constraint firstItem="tND-Nf-VQh" firstAttribute="top" secondItem="qDQ-2d-OHD" secondAttribute="bottom" constant="10" id="U57-Bz-LQG"/>
+                            <constraint firstItem="qDQ-2d-OHD" firstAttribute="top" secondItem="6iu-00-hIv" secondAttribute="top" id="bX4-wG-2ol"/>
+                            <constraint firstItem="6iu-00-hIv" firstAttribute="trailing" secondItem="tND-Nf-VQh" secondAttribute="trailing" constant="10" id="cSc-Ch-nZ9"/>
+                            <constraint firstItem="tND-Nf-VQh" firstAttribute="bottom" secondItem="6iu-00-hIv" secondAttribute="bottom" constant="10" id="deF-jN-AP1"/>
+                            <constraint firstItem="qDQ-2d-OHD" firstAttribute="leading" secondItem="6iu-00-hIv" secondAttribute="leading" id="q1I-Fx-N5x"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6iu-00-hIv"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="FVS-dW-k0j"/>
+                    <connections>
+                        <outlet property="imageView" destination="qDQ-2d-OHD" id="Lx7-rl-iSk"/>
+                        <outlet property="messageLabel" destination="tND-Nf-VQh" id="Otv-ag-BLi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jmO-e8-21x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2097" y="824"/>
         </scene>
         <!--Select Picture View Controller-->
         <scene sceneID="04B-MC-pAN">

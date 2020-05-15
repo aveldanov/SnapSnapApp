@@ -49,24 +49,12 @@ class LoginViewController: UIViewController {
 
                 ref = Database.database().reference()
                 
-                ref.child("users")
-                
-                  //DB!
-                  
-                  
-                
-                ){ err in
-                  if let err = err {
-                    print("Error adding document: \(err)")
-                  } else {
-//                    print("Document added with ID: \(ref!.documentID)")
-                  }
-                }
+                ref.child("users").child(user.user.uid).child("email").setValue(user.user.email)
+
                 
               }
               
-         
-              
+           
               
               
               self.performSegue(withIdentifier: "moveToSnaps", sender: self)
