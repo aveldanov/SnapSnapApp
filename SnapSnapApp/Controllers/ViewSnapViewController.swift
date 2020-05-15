@@ -50,7 +50,6 @@ class ViewSnapViewController: UIViewController {
     ref = Database.database().reference()
     
     
-    
     if let currentUserUid = Auth.auth().currentUser?.uid{
       if let key = snap?.key{
         ref.child("users").child(currentUserUid).child("snaps").child(key).removeValue()
